@@ -9,19 +9,7 @@ app.get("/home", (req, res) => {
   res.status(200).send("<h1>Hello Word com NodeJs usando Express</h1>");
 });
 
-app.get("/users", (req, res) => {
-  let users = [
-    {
-      name: "Wenderson Gustavo",
-      email: "gustavo@gmail.com",
-    },
-    {
-      name: "Joice Magalhaes",
-      email: "joice@gmail.com",
-    },
-  ];
-  res.status(200).json(users);
-});
+
 
 app.post("/users", async (req, res) => {
   try {
@@ -31,6 +19,28 @@ app.post("/users", async (req, res) => {
     res.status(500).end(error.message);
   }
 });
+
+app.get("/users/:id", async (req, res) => {
+  try {
+    
+    const id = req.params.id;
+    const user = await UserModel.findById(id);
+    res.status(200).json(user);
+
+
+  } catch (error) {
+    res.status(500).end(error.message);
+  }
+})
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await UserModel.find({});
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send(error.message); // send pois é string e não json
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Rodando server com Express na porta ${PORT}`);
