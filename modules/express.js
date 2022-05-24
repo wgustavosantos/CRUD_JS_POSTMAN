@@ -16,7 +16,7 @@ app.get("/users", (req, res) => {
         {
           name: "Joice Magalhaes",
           email: "joice@gmail.com",
-        },
+        },e
       ];
       res.status(200).json(users);
 });
