@@ -1,6 +1,7 @@
-const { Person } = require("./person");
+//const { Person } = require("./person");
+require("./modules/http");
+//let person = new Person("Gustavo");
 
-let person = new Person("Gustavo");
-
-console.log(person.sayMyName());
+//require("./modules/fs") //importando arquivo e executando 
+//console.log(person.sayMyName());
 
